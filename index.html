@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VRCZ</title>
+    <meta charset="utf-8"/>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+      <script type="text/javascript">
+      $(function() {
+        $('#before').keyup(function() {
+          var str = $(this).val();
+          var replacements = [
+            [/k/g, 'g'],
+            [/s([^z]{1})/g, 'z$1'], // s not sz
+            [/p/g, 'b'],
+            [/t/g, 'd'],
+            [/sz/g, 'ż'],
+            [/ć/g, 'dź'],
+            [/cz/g, 'dż'],
+            [/c([^z]{1})/g, 'dz$1'],
+          ]
+          for (i = 0; i < replacements.length; i++) {
+            str = str.replace(replacements[i][0], replacements[i][1]);
+          }
+          $('#after').val(str);
+        });
+      });
+      </script>
+  </head>
+  <body>
+    <div>
+      <textarea id="before" autofocus="true" style="width: 400px; height: 100px"></textarea>
+    </div>
+    <div>
+      <textarea id="after" style="width: 400px; height: 100px"></textarea>
+    </div>
+  </body>
+</html>
